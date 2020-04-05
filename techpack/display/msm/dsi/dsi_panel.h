@@ -59,6 +59,13 @@ enum dsi_doze_type {
 	DSI_DOZE_LBM,
 };
 
+#ifdef CONFIG_TARGET_PROJECT_K7T
+enum dsi_doze_mode_type {
+	DSI_DOZE_LPM = 0,
+	DSI_DOZE_HBM,
+};
+#endif
+
 enum bl_update_flag {
 	BL_UPDATE_DELAY_UNTIL_FIRST_FRAME,
 	BL_UPDATE_NONE,
@@ -282,6 +289,11 @@ struct dsi_panel {
 	u32 doze_hbm_threshold;
 
 	u8 dsi_refresh_flag;
+
+#ifdef CONFIG_TARGET_PROJECT_K7T
+	bool doze_enabled;
+	enum dsi_doze_mode_type doze_mode;
+#endif
 };
 
 static inline bool dsi_panel_ulps_feature_enabled(struct dsi_panel *panel)
