@@ -886,4 +886,14 @@ int dsi_ctrl_get_io_resources(struct msm_io_res *io_res);
  */
 void dsi_ctrl_mask_overflow(struct dsi_ctrl *dsi_ctrl, bool enable);
 
+
+/**
+ * dsi_ctrl_get_io_resources() - reads associated register range
+ *
+ * @io_res:	 pointer to msm_io_res struct to populate the ranges
+ *
+ * Return: error code.
+ */
+int dsi_ctrl_get_io_resources(struct msm_io_res *io_res);
+
 #endif /* _DSI_CTRL_H_ */

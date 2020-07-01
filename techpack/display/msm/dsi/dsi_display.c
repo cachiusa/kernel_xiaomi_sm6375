@@ -5970,6 +5970,39 @@ static int dsi_display_sysfs_init(struct dsi_display *display)
 }
 #endif
 
+static int dsi_display_get_io_resources(struct msm_io_res *io_res, void *data)
+{
+	int rc = 0;
+
+	rc = dsi_ctrl_get_io_resources(io_res);
+	if (rc)
+		goto end;
+
+	rc = dsi_phy_get_io_resources(io_res);
+end:
+	return rc;
+}
+
+static int dsi_display_pre_release(void *data)
+{
+	if (!data)
+		return -EINVAL;
+
+	dsi_display_ctrl_irq_update((struct dsi_display *)data, false);
+
+	return 0;
+}
+
+static int dsi_display_pre_acquire(void *data)
+{
+	if (!data)
+		return -EINVAL;
+
+	dsi_display_ctrl_irq_update((struct dsi_display *)data, true);
+
+	return 0;
+}
+
 /**
  * dsi_display_bind - bind dsi device with controlling device
  * @dev:        Pointer to base of platform device
