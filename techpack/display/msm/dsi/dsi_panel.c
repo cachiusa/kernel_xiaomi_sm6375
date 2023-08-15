@@ -1826,14 +1826,16 @@ const char *cmd_set_prop_map[DSI_CMD_SET_MAX] = {
 	"qcom,mdss-dsi-post-mode-switch-on-command",
 	"qcom,mdss-dsi-qsync-on-commands",
 	"qcom,mdss-dsi-qsync-off-commands",
+	"qcom,mdss-dsi-dispparam-hbm-on-command",
+	"qcom,mdss-dsi-dispparam-hbm-off-command",
+	"qcom,mdss-dsi-hbm1-on-command",
+	"qcom,mdss-dsi-hbm2-on-command",
 	"qcom,mdss-dsi-doze-hbm-command",
 	"qcom,mdss-dsi-doze-lbm-command",
 	"qcom,mdss-dsi-dispparam-bc-120hz-command",
 	"qcom,mdss-dsi-dispparam-bc-60hz-command",
-#ifdef CONFIG_TARGET_PROJECT_K7T
 	"qcom,mdss-dsi-doze-hbm-command",
 	"qcom,mdss-dsi-doze-lbm-command",
-#endif
 };
 
 const char *cmd_set_state_map[DSI_CMD_SET_MAX] = {
@@ -1860,14 +1862,16 @@ const char *cmd_set_state_map[DSI_CMD_SET_MAX] = {
 	"qcom,mdss-dsi-post-mode-switch-on-command-state",
 	"qcom,mdss-dsi-qsync-on-commands-state",
 	"qcom,mdss-dsi-qsync-off-commands-state",
+	"qcom,mdss-dsi-dispparam-hbm-on-command-state",
+	"qcom,mdss-dsi-dispparam-hbm-off-command-state",
+	"qcom,mdss-dsi-hbm1-on-command-state",
+	"qcom,mdss-dsi-hbm2-on-command-state",
 	"qcom,mdss-dsi-doze-hbm-command-state",
 	"qcom,mdss-dsi-doze-lbm-command-state",
 	"qcom,mdss-dsi-dispparam-bc-120hz-command-state",
 	"qcom,mdss-dsi-dispparam-bc-60hz-command-state",
-#ifdef CONFIG_TARGET_PROJECT_K7T
 	"qcom,mdss-dsi-doze-hbm-command-state",
 	"qcom,mdss-dsi-doze-lbm-command-state",
-#endif
 };
 
 int dsi_panel_get_cmd_pkt_count(const char *data, u32 length, u32 *cnt)
