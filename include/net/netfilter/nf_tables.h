@@ -1324,6 +1324,32 @@ static inline int nft_set_elem_is_dead(const struct nft_set_ext *ext)
 	return test_bit(NFT_SET_ELEM_DEAD_BIT, word);
 }
 
+#define NFT_SET_ELEM_DEAD_MASK (1 << 3)
+
+#if defined(__LITTLE_ENDIAN_BITFIELD)
+#define NFT_SET_ELEM_DEAD_BIT	3
+#elif defined(__BIG_ENDIAN_BITFIELD)
+#define NFT_SET_ELEM_DEAD_BIT	(BITS_PER_LONG - BITS_PER_BYTE + 3)
+#else
+#error
+#endif
+
+static inline void nft_set_elem_dead(struct nft_set_ext *ext)
+{
+	unsigned long *word = (unsigned long *)ext;
+
+	BUILD_BUG_ON(offsetof(struct nft_set_ext, genmask) != 0);
+	set_bit(NFT_SET_ELEM_DEAD_BIT, word);
+}
+
+static inline int nft_set_elem_is_dead(const struct nft_set_ext *ext)
+{
+	unsigned long *word = (unsigned long *)ext;
+
+	BUILD_BUG_ON(offsetof(struct nft_set_ext, genmask) != 0);
+	return test_bit(NFT_SET_ELEM_DEAD_BIT, word);
+}
+
 /**
  *	struct nft_trans - nf_tables object update in transaction
  *
