@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=IoSeKSU-alpha kernel version 0.1 by Semina Alexandru
+kernel.string=IoSeKSU kernel R1 by Semina Alexandru
 do.devicecheck=0
 do.modules=0
 do.systemless=1
@@ -16,7 +16,7 @@ supported.patchlevels=
 
 ### AnyKernel install
 override_cmdline() {
-local cmdline='androidboot.hardware=qcom lpm_levels.sleep_disabled=1 service_locator.enable=1 androidboot.usbcontroller=4e00000.dwc3 swiotlb=0 loop.max_part=7 iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 firmware_class.path=/vendor/firmware buildvariant=user'
+local cmdline='quiet androidboot.hardware=qcom lpm_levels.sleep_disabled=1 service_locator.enable=1 androidboot.usbcontroller=4e00000.dwc3 swiotlb=0 loop.max_part=7 iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 firmware_class.path=/vendor/firmware buildvariant=user'
 sed -i '/^cmdline/d' $split_img/header;
 echo cmdline=$cmdline >> $split_img/header;
 }
@@ -28,7 +28,6 @@ no_block_display=1;
 
 # import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;
-ui_print " " "Flashing KernelSU version. You have been warned about security implications.";
 
 # boot install
 split_boot;
@@ -46,4 +45,5 @@ reset_ak;
 split_boot;
 override_cmdline;
 flash_boot;
+ui_print " " "All done. Thank you for using IoSeKSU!";
 ## end vendor_kernel_boot install
