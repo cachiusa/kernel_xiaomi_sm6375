@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved
  * Copyright (c) 2016-2021, The Linux Foundation. All rights reserved.
  */
 
@@ -791,6 +792,8 @@ int dsi_conn_set_info_blob(struct drm_connector *connector,
 	bpp = dsi_ctrl_pixel_format_to_bpp(fmt);
 
 	sde_kms_info_add_keyint(info, "bit_depth", bpp);
+	if (dsi_display->panel->host_config.ext_bridge_hpd_en)
+		sde_kms_info_add_keystr(info, "ext bridge hpd support", "true");
 
 end:
 	return 0;
@@ -1005,6 +1008,13 @@ int dsi_connector_get_modes(struct drm_connector *connector, void *data,
 
 	edid.width_cm = (connector->display_info.width_mm) / 10;
 	edid.height_cm = (connector->display_info.height_mm) / 10;
+
+#ifdef CONFIG_WT_QGKI
+	if (connector->display_info.height_mm > 1000) {
+		edid.width_cm = (connector->display_info.width_mm) / 100;
+		edid.height_cm = (connector->display_info.height_mm) / 100;
+	}
+#endif
 
 	dsi_drm_update_dtd(&edid, modes, count);
 	dsi_drm_update_checksum(&edid);
