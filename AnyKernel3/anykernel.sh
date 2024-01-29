@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=IoSeKSU kernel R1 by Semina Alexandru
+kernel.string=IoSeKSU kernel R2 by Semina Alexandru
 do.devicecheck=0
 do.modules=0
 do.systemless=1
