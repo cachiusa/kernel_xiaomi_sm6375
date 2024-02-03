@@ -1,0 +1,6 @@
+name,repourl,remotebranch,forceupdate
+dereference23/positron,https://github.com/dereference23/kernel_xiaomi_sm6375,main,yes
+MrKriboo/Mod-Kribo-Rais,https://github.com/Siarrrrrrrr/Positron-Veux-Mod-Rais-Kribo-KSU-fix120hz,main,no
+SnowZero07/NeverGiveUp,https://github.com/RedEnemy30/kernel_xiaomi_positron,up,no
+Cexary/Rashoumon,https://github.com/IamCexary/kernel_xiaomi_sm6375,rashoumon,no
+alexandrusemina/IoSeKSU,https://github.com/alexandrusemina/kernel_xiaomi_sm6375,IoSe_R2,no
