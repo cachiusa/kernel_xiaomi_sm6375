@@ -16,6 +16,6 @@ while IFS=',' read -r name repourl remotebranch forceupdate ; do
       git fetch "$repourl" "$remotebranch"
       git reset --hard FETCH_HEAD
     fi
-    git push -u origin "$name"
+    git push -f -u origin "$name"
   fi
 done < index.csv
