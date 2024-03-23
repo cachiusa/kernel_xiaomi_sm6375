@@ -6,16 +6,16 @@ arch/arm64/boot/dts/vendor/qcom/blair.dtb
 include/config/kernel.release
 include/generated/compile.h
 "
-DIST_DIR=AnyKernel3
-
+MAKE_GOALS="
+Image
+modules
+dtbs
+"
 LLVM=1
 LLVM_IAS=1
 CLANG_PREBUILT_BIN=llvm/bin
 BUILDTOOLS_PREBUILT_BIN=build/build-tools/path/linux-x86
 DEFCONFIG=veux_defconfig
-SKIP_CP_KERNEL_HDR=1
-SKIP_EXT_MODULES=1
-BUILD_INITRAMFS=0
 
 inject_ramdisk() {
   ${KERNEL_DIR}/scripts/config --file ${OUT_DIR}/.config \
@@ -31,8 +31,11 @@ copy_ak3() {
   cd ${DIST_DIR}
   mv -f blair.dtb dtb
   rm abi.prop test_mappings.zip
-  [[ -n $GITHUB_ACTION ]] && rm -rf .git/ || zip -r9 "AnyKernel3$(cat ../localversion).zip" * -x .git/
+  [[ -n $GITHUB_ACTION ]] && rm -rf .git/ || zip -r9 "AnyKernel3$(cat ${KERNEL_DIR}/localversion).zip" * -x .git/
 }
 
 POST_DEFCONFIG_CMDS="inject_ramdisk"
 DIST_CMDS="copy_ak3"
+
+SKIP_CP_KERNEL_HDR=1
+IN_KERNEL_MODULES=1
